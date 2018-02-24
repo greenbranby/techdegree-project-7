@@ -3,7 +3,7 @@
 
 /* Variables */
 
-:root {
+/* :root {
   --color-win: #78CF82;
   --color-lose: #D94545;
   --color-start: #5b85b7;
@@ -14,8 +14,19 @@
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
+} */
+:root {
+  --color-win: #8d2941;
+  --color-lose: #2d5073;
+  --color-start: #0a59a5;
+  --color-neutral: #2d5073;
+  --color-neutral-light: #aeddd0;
+  --color-keys: #fff;
+  --color-keys-light: #77cab5;
+  --font-size-large: 60px;
+  --font-size-medium: 20px;
+  --transition: all .2s ease-in-out;
 }
-
 /* main */
 
 * {
@@ -99,8 +110,9 @@ button {
 }
 
 .show {
-  color: #000;
-  background-color: #76CE82;
+  color: #aeddd0;
+  background-color: #732839;
+    /* background-color: #76CE82; */
 }
 
 /* Keyboard */
