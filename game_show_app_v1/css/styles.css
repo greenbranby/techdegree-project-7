@@ -100,6 +100,15 @@ button {
 .show {
   color: #aeddd0;
   background-color: #732839;
+  /* Firefox */
+    -moz-transition: all 1s ease-in;
+    /* WebKit */
+    -webkit-transition: all 1s ease-in;
+    /* Opera */
+    -o-transition: all 1s ease-in;
+    /* Standard */
+    transition: all 1s ease-in;
+  /* transition: background-color: 2s ease-in; */
     /* background-color: #76CE82; */
 }
 

@@ -14,7 +14,13 @@ const title = document.querySelector('.title');
 //to hide the start screen overlay.
 startButton.addEventListener('click',  (event) => {
         event.target = (1>0)
-        overlay.style.display = 'none';
+
+        if (startButton.textContent === "Start Game") {
+       overlay.style.display = 'none';
+   } else if (startButton.textContent === "Replay") {
+        overlay.style.display = 'flex'
+        refreshPage();
+   }
       });
 
 //Create a phrases array that contains at least 5 different phrases as strings.
@@ -98,14 +104,15 @@ function checkWin() {
         }
 }
 
-// function refreshPage() {
-//         location.reload(true);
-// };
-//
-// function delayRefreshPage(mileSeconds) {
-//         window.setTimeout(refreshPage, mileSeconds);
-//   };
+function refreshPage() {
+        location.reload(true);
+};
+// CSS TRANSITION FUNCTIONS
 
+function myFunction() {
+    document.getElementsByClassName('show').style.WebkitTransition = "all 2s"; // Code for Safari 3.1 to 6.0
+    document.getElementsByClassName('show').style.transition = "all 2s";       // Standard syntax
+};
 
 qwerty.addEventListener('click', function(event) {
   // When a player chooses a letter, add the “chosen” class
