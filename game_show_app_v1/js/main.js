@@ -1,5 +1,4 @@
-//-----------Variables-------------------------
-
+//     VARIABLES
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 var missed = 0;
@@ -29,7 +28,7 @@ var phrases = [
       ];
 
 
-//-----------Functions-------------------------
+//     FUNCTIONS
 
 function getRandomPhraseAsArray(arr)
 {
@@ -89,7 +88,7 @@ function checkWin() {
             overlay.classList.add('win');
             title.textContent = "Congratulations, You Won!";
             startButton.textContent = "Replay";
-          delayRefreshPage(2000);
+           delayRefreshPage(2000);
         } else if (missed === 5) {
             overlay.style.display = '';
             overlay.classList.add('lose');
@@ -98,6 +97,15 @@ function checkWin() {
             delayRefreshPage(2000);
         }
 }
+
+function refreshPage() {
+        location.reload(true);
+};
+
+function delayRefreshPage(mileSeconds) {
+        window.setTimeout(refreshPage, mileSeconds);
+  };
+
 
 qwerty.addEventListener('click', function(event) {
   // When a player chooses a letter, add the “chosen” class
@@ -126,15 +134,6 @@ qwerty.addEventListener('click', function(event) {
            }
   });
 
-function refreshPage() {
-        location.reload(true);
-};
-
-function delayRefreshPage(mileSeconds) {
-    window.setTimeout(refreshPage, mileSeconds);
-  };
-
-
-
+//     EXECUTE
 const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray);
