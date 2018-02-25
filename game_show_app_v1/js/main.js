@@ -5,12 +5,15 @@ const phrase = document.getElementById('phrase');
 var missed = 0;
 const overlay = document.getElementById('overlay');
 const ul = document.querySelector('#phrase ul');
-
+const startButton = document.querySelector('.btn__reset');
+const letter = document.getElementsByClassName('letter');
+const show = document.getElementsByClassName('show');
+const title = document.querySelector('.title');
 
 
 //Attach a event listener to the “Start Game” button
 //to hide the start screen overlay.
-overlay.addEventListener('click',  (event) => {
+startButton.addEventListener('click',  (event) => {
         event.target = (1>0)
         overlay.style.display = 'none';
       });
@@ -24,6 +27,9 @@ var phrases = [
         "give a man a fish",
         "raining cats and dogs"
       ];
+
+
+//-----------Functions-------------------------
 
 function getRandomPhraseAsArray(arr)
 {
@@ -54,6 +60,7 @@ function addPhraseToDisplay(arr) {
 // function to  get all of the elements with a class of “letter”
 function checkLetter(button) {
         const letter = document.getElementsByClassName('letter');
+        // var counter = 0;
         var correctLetter = false;
         // The function should loop over the letters and check
         //if they match the letter in the button the player has chosen.
@@ -62,59 +69,71 @@ function checkLetter(button) {
         //store the matching letter inside of a variable, and return that letter.
           if (letter[i].textContent === button.textContent ) {
             letter[i].classList.add('show');
+            //counter ++
             correctLetter = true;
               //If a match wasn’t found, the function should return null.
           }
             if (correctLetter)  {
-            } else {
-            return null;
+            return letter;
+            }else{
+              return null;
           }
 };
+
+function checkWin() {
+        //check if the number of letters with class “show”
+        //is equal to the number of letters with class “letters”
+        if (letter.length === show.length) {
+          //If they’re equal, show the overlay screen with the “win” class and appropriate text.
+            overlay.style.display = '';
+            overlay.classList.add('win');
+            title.textContent = "Congratulations, You Won!";
+            startButton.textContent = "Replay";
+          delayRefreshPage(2000);
+        } else if (missed === 5) {
+            overlay.style.display = '';
+            overlay.classList.add('lose');
+            title.textContent = "You Lost. Better Luck Next Time!";
+            startButton.textContent = "Replay";
+            delayRefreshPage(2000);
+        }
+}
 
 qwerty.addEventListener('click', function(event) {
   // When a player chooses a letter, add the “chosen” class
   //to that button so the same letter can’t be chosen twice.
-      var clickedButton = event.target;
-      if (clickedButton.tagName === 'BUTTON') {
+      const clickedButton = event.target;
+      if (event.target.tagName === 'BUTTON') {
          var button = clickedButton.parentNode;
          //Pass the button to the checkLetter function
          //store the letter returned inside of a variable called letterFound
          var letterFound = checkLetter(clickedButton);
          clickedButton.className = 'chosen';
+         clickedButton.disabled = true;
          clickedButton.setAttribute('disabled', "");
 
          //If the value is null, remove one of the tries from the scoreboard
          if (letterFound === null ) {
            missed ++;
-           var li = document.querySelectorAll('.tries')[0];
-           const ol =  li.parentNode;
+         } // var li = document.querySelectorAll('.tries');
          //remove one of the tries from the scoreboard.
-          if (missed <= 5) {
-            ol.removeChild(li);
-         }
+          if (missed >=1 && missed <= 5) {
+          // replace with lostHeart image
+            var hearts = document.getElementsByTagName('img');
+            hearts[missed -1].src ='images/lostHeart.png';
+          }
              checkWin();
-      }
-    }
+           }
   });
 
-function checkWin() {
-        //check if the number of letters with class “show”
-        //is equal to the number of letters with class “letters”
-        var letter = document.getElementsByClassName('letter');
-        var show = document.getElementsByClassName('show');
-        if (letter.length === show.length) {
-          //If they’re equal, show the overlay screen with the “win” class and appropriate text.
-            overlay.style.display = 'flex';
-            overlay.className = 'win';
-            let title = document.querySelector('#overlay .title');
-            title.textContent = "Congratulations, You Won!";
-        } else if (missed === 5) {
-            overlay.style.display = 'flex';
-            overlay.className = 'lose';
-            let title = document.querySelector('#overlay .title');
-            title.textContent = "You Lost. Better Luck Next Time!";
-          }
-}
+function refreshPage() {
+        location.reload(true);
+};
+
+function delayRefreshPage(mileSeconds) {
+    window.setTimeout(refreshPage, mileSeconds);
+  };
+
 
 
 const phraseArray = getRandomPhraseAsArray(phrases);
