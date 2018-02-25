@@ -88,23 +88,23 @@ function checkWin() {
             overlay.classList.add('win');
             title.textContent = "Congratulations, You Won!";
             startButton.textContent = "Replay";
-           delayRefreshPage(2000);
+           // delayRefreshPage(2000);
         } else if (missed === 5) {
             overlay.style.display = '';
             overlay.classList.add('lose');
             title.textContent = "You Lost. Better Luck Next Time!";
             startButton.textContent = "Replay";
-            delayRefreshPage(2000);
+            // delayRefreshPage(2000);
         }
 }
 
-function refreshPage() {
-        location.reload(true);
-};
-
-function delayRefreshPage(mileSeconds) {
-        window.setTimeout(refreshPage, mileSeconds);
-  };
+// function refreshPage() {
+//         location.reload(true);
+// };
+//
+// function delayRefreshPage(mileSeconds) {
+//         window.setTimeout(refreshPage, mileSeconds);
+//   };
 
 
 qwerty.addEventListener('click', function(event) {
