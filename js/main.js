@@ -114,7 +114,7 @@ function myFunction() {
     document.getElementsByClassName('show').style.transition = "all 2s";       // Standard syntax
 };
 
-qwerty.addEventListener('click', function(event) {
+addEventListener('click', function(event) {
   // When a player chooses a letter, add the “chosen” class
   //to that button so the same letter can’t be chosen twice.
       const clickedButton = event.target;
